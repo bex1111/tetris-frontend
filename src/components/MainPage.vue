@@ -1,13 +1,11 @@
 <template>
-  <v-container>
-    <v-row>
-      <track-displayer
-        v-for="(trackInfos, index) in tracksInfos"
-        :key="index"
-        :trackInfos="trackInfos"
-      ></track-displayer>
-    </v-row>
-  </v-container>
+  <div class="flex-container">
+    <track-displayer
+      v-for="(trackInfos, index) in tracksInfos"
+      :trackInfos="trackInfos"
+      :key="index"
+    ></track-displayer>
+  </div>
 </template>
 
 <script>
@@ -39,3 +37,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  text-align: center;
+}
+</style>

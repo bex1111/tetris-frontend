@@ -1,14 +1,9 @@
 <template>
-  <table style="border: 1px solid">
-    <tr
-      v-for="(row, rowIndex) in coloredTrack"
-      :key="rowIndex"
-      style="border: 1px solid; width 30px; height: 30px"
-    >
+  <table>
+    <tr v-for="(row, rowIndex) in coloredTrack" :key="rowIndex">
       <th
         v-for="(column, columnIndex) in row"
         :key="rowIndex + columnIndex"
-        style="border: 1px solid; width 30px; height: 30px"
         :bgcolor="column"
       ></th>
     </tr>
@@ -47,10 +42,28 @@ export default {
 
 <style scoped>
 table {
+  margin: 20px;
   table-layout: fixed;
-  width: 200px;
 }
 table tr {
+  height: 20px;
+}
+table,
+th,
+td {
+  border-collapse: separate;
+  border-spacing: 1px;
+  border-style: solid;
+  border-width: thin;
+}
+table {
+  background: rgb(190, 187, 187);
+}
+tr {
+  background: #fff;
+}
+th {
+  width: 20px;
   height: 20px;
 }
 </style>
