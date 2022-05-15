@@ -1,13 +1,16 @@
 <template>
-  <table>
-    <tr v-for="(row, rowIndex) in coloredTrack" :key="rowIndex">
-      <th
-        v-for="(column, columnIndex) in row"
-        :key="rowIndex + columnIndex"
-        :bgcolor="column"
-      ></th>
-    </tr>
-  </table>
+  <div>
+    <span>Username: {{ game.username }} Point: {{ game.point }}</span>
+    <table>
+      <tr v-for="(row, rowIndex) in game.coloredTrack" :key="rowIndex">
+        <th
+          v-for="(column, columnIndex) in row"
+          :key="rowIndex + columnIndex"
+          :bgcolor="column"
+        ></th>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -15,11 +18,17 @@ export default {
   name: "TrackDisplayer",
   props: ["trackInfos"],
   data: () => ({
-    coloredTrack: null,
+    game: {
+      username: null,
+      point: 0,
+      coloredTrack: null,
+    },
   }),
   watch: {
     trackInfos: function () {
-      this.coloredTrack = this.trackInfos.track.map((row) =>
+      this.game.username = this.trackInfos.username;
+      this.game.point = this.trackInfos.point;
+      this.game.coloredTrack = this.trackInfos.track.map((row) =>
         row.map(this.mapCellColor)
       );
     },
