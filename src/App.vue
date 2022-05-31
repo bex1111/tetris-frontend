@@ -1,23 +1,15 @@
 <template>
-  <v-app>
-    <v-main>
-      <MainPage />
-    </v-main>
-  </v-app>
+  <MainPage/>
 </template>
 
 <script>
-import MainPage from "./components/MainPage";
+import MainPage from './components/MainPage'
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
     MainPage,
   },
-
-  data: () => ({
-    //
-  }),
-};
+}
 </script>

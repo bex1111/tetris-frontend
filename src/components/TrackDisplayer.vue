@@ -1,12 +1,13 @@
 <template>
   <div>
-    <span>Username: {{ game.username }} Point: {{ game.point }}</span>
+    <span>Username: {{ game.username }}<br>
+      Point: {{ game.point }}</span>
     <table>
       <tr v-for="(row, rowIndex) in game.coloredTrack" :key="rowIndex">
         <th
-          v-for="(column, columnIndex) in row"
-          :key="rowIndex + columnIndex"
-          :bgcolor="column"
+            v-for="(column, columnIndex) in row"
+            :key="rowIndex + columnIndex"
+            :bgcolor="column"
         ></th>
       </tr>
     </table>
@@ -15,8 +16,8 @@
 
 <script>
 export default {
-  name: "TrackDisplayer",
-  props: ["trackInfos"],
+  name: 'TrackDisplayer',
+  props: ['trackInfos'],
   data: () => ({
     game: {
       username: null,
@@ -26,27 +27,27 @@ export default {
   }),
   watch: {
     trackInfos: function () {
-      this.game.username = this.trackInfos.username;
-      this.game.point = this.trackInfos.point;
+      this.game.username = this.trackInfos.username
+      this.game.point = this.trackInfos.point
       this.game.coloredTrack = this.trackInfos.track.map((row) =>
-        row.map(this.mapCellColor)
-      );
+          row.map(this.mapCellColor),
+      )
     },
   },
   methods: {
     mapCellColor(cellType) {
-      if (cellType === "EMPTY") {
-        return "white";
+      if (cellType === 'EMPTY') {
+        return 'white'
       }
-      if (cellType === "ELEMENT") {
-        return "red";
+      if (cellType === 'ELEMENT') {
+        return 'red'
       }
-      if (cellType === "POINT") {
-        return "black";
+      if (cellType === 'POINT') {
+        return 'black'
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -54,9 +55,11 @@ table {
   margin: 20px;
   table-layout: fixed;
 }
+
 table tr {
   height: 20px;
 }
+
 table,
 th,
 td {
@@ -65,12 +68,15 @@ td {
   border-style: solid;
   border-width: thin;
 }
+
 table {
   background: rgb(190, 187, 187);
 }
+
 tr {
   background: #fff;
 }
+
 th {
   width: 20px;
   height: 20px;
