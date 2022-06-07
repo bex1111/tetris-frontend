@@ -1,41 +1,58 @@
 <template>
-  <div class="flex-container">
-    <track-displayer
-      v-for="(trackInfos, index) in tracksInfos"
-      :trackInfos="trackInfos"
-      :key="index"
-    ></track-displayer>
+  <div>
+    <div class="flex-container">
+      <points-displayer
+          v-for="(userPoints, index) in userPointsList"
+          :key="index"
+          :userPoints="userPoints">
+      </points-displayer>
+    </div>
+    <div class="flex-container">
+      <track-displayer
+          v-for="(trackInfos, index) in tracksInfos"
+          :trackInfos="trackInfos"
+          :key="index"
+      ></track-displayer>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import TrackDisplayer from "./TrackDisplayer.vue";
-import socket from "../mixins/socket";
+import TrackDisplayer from './TrackDisplayer.vue'
+import socket from '../mixins/socket'
+import {listPoints} from '@/mixins/axios'
+import PointsDisplayer from '@/components/PointsDisplayer'
 
 export default {
-  name: "MainPage",
+  name: 'MainPage',
   components: {
+    PointsDisplayer,
     TrackDisplayer,
   },
 
   data: () => ({
     tracksInfos: [],
+    userPointsList: [],
   }),
 
   created() {
-    axios
-      .post("http://localhost:8080/startGame", { username: "testtest" })
-      .then((response) => console.log(response));
-    socket(this.handleSocket);
+    socket(this.handleSocket)
   },
 
   methods: {
     handleSocket(data) {
-      this.tracksInfos = JSON.parse(data.data);
+      let trackInfosLength = this.tracksInfos.length
+      this.tracksInfos = data
+      this.refreshListPointsIfTrackLenghtChange(trackInfosLength)
+    },
+    refreshListPointsIfTrackLenghtChange(trackInfosLength) {
+      if (trackInfosLength !== this.tracksInfos.length) {
+        listPoints()
+            .then(x => this.userPointsList = x.data)
+      }
     },
   },
-};
+}
 </script>
 
 <style scoped>
