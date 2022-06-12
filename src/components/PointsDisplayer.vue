@@ -13,4 +13,9 @@ export default {
 </script>
 
 <style scoped>
+div {
+  padding-right: 5px;
+  margin-left: 5px;
+  border-right: 1px solid black;
+}
 </style>
