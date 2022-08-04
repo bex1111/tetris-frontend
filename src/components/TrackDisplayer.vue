@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 table {
-  margin: 10px;
+  margin: 40px;
   table-layout: fixed;
 }
 
@@ -78,7 +78,7 @@ tr {
 }
 
 th {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
 }
 </style>
